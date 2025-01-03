@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <style>
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            height: 500px;
+            width: 700px;
+            border: 0.5px solid black;
+        }
+        .box  form tr td{
+            height: 50px;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+   <div class="box">
+    <form action="form">
+        <h1>Register here</h1>
+        <tr>
+            <td>Enter Your FirstName :</td>
+            <td>
+                <input type="text" name="fname" id="fname" required>
+            </td>
+            <td>Enter Your LastName :</td>
+            <td>
+                <input type="text" name="lname" id="lname" required>
+            </td>
+            </tr>
+
+            <br>
+            
+            <tr>
+                <td>Enter Phone Number :</td>
+                <td>
+                    <input type="tel" name="phone" id="number" maxlength="10" required>
+                </td>
+                <td>Enter Your E-mail :</td>
+                <td>
+                    <input type="email" name="email" id="email">
+                </td>
+            </tr>
+            
+            <br>
+            
+            <tr>
+                <td>Enter Your Password :</td>
+                <td>
+                    <input type="password" name="password" id="password">
+                </td>
+                <td>Confirm Password :</td>
+                <td>
+                    <input type="password" name="cpassword" id="cpassword">
+                </td>
+            </tr>
+            
+            <br>
+
+            <input type="submit" onclick="register(event)" value="submit">
+            <p><a href="login.html"> LogIn </a></p>
+        <!-- <label >Enter name</label>
+        <input type="text" id="fname"> <br>
+        <label >Enter number</label>
+        <input type="number" id="number"> <br>
+        <label >Enter email</label>
+        <input type="email" id='email'> <br>
+        <label >Enter password</label>
+        <input type="password" id="password"> <br>
+        <input type="submit" onclick="register(event)" value="submit" >
+        <p><a href="login.html">Login</a></p> -->
+    </form>
+   </div>
+    <script>
+
+        function register(event){
+            event.preventDefault()
+
+            let getLocalData = JSON.parse(localStorage.getItem("user"))
+            if(getLocalData == null){
+                getLocalData = []
+            }
+            console.log(getLocalData,"getLocalData")
+
+            let fname = document.querySelector('#fname').value
+            let lname = document.querySelector('#lname').value
+            let number = document.querySelector('#number').value
+            let email = document.querySelector('#email').value
+            let password = document.querySelector('#password').value
+            let cpassword = document.querySelector('#cpassword').value
+
+            let getFormData = {fname,lname, number, email, password,cpassword}
+            console.log(getFormData)
+
+            getLocalData = [...getLocalData, getFormData]
+
+            localStorage.setItem('user', JSON.stringify(getLocalData))
+
+        }
+    </script>
+</body>
+</html>
